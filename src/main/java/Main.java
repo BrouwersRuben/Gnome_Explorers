@@ -132,7 +132,6 @@ public class Main {
                 "                                                   \n" +
                 "                                                   ";
         System.out.print(EndGame + "\n");
-        }
     }
 }
 
