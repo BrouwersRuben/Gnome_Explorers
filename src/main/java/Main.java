@@ -122,7 +122,17 @@ public class Main {
     }
 
     private static void endGame() {
-        System.out.println("Show end game");
+        System.out.println(" ");
+        String EndGame = "  ______           _    _____                      \n" +
+                " |  ____|         | |  / ____|                     \n" +
+                " | |__   _ __   __| | | |  __  __ _ _ __ ___   ___ \n" +
+                " |  __| | '_ \\ / _` | | | |_ |/ _` | '_ ` _ \\ / _ \\\n" +
+                " | |____| | | | (_| | | |__| | (_| | | | | | |  __/\n" +
+                " |______|_| |_|\\__,_|  \\_____|\\__,_|_| |_| |_|\\___|\n" +
+                "                                                   \n" +
+                "                                                   ";
+        System.out.print(EndGame + "\n");
+        }
     }
 }
 
