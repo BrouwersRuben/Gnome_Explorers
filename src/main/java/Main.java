@@ -22,23 +22,6 @@ public class Main {
     }
 
     private static void showMainMenu() {
-        /*
-        String GameName = "  ____  ____    ___   ___ ___    ___        ___  __ __  ____  _       ___   ____     ___  ____    _____\n" +
-                " /    T|    \\  /   \\ |   T   T  /  _]      /  _]|  T  T|    \\| T     /   \\ |    \\   /  _]|    \\  / ___/\n" +
-                "Y   __j|  _  YY     Y| _   _ | /  [_      /  [_ |  |  ||  o  ) |    Y     Y|  D  ) /  [_ |  D  )(   \\_ \n" +
-                "|  T  ||  |  ||  O  ||  \\_/  |Y    _]    Y    _]l_   _j|   _/| l___ |  O  ||    / Y    _]|    /  \\__  T\n" +
-                "|  l_ ||  |  ||     ||   |   ||   [_     |   [_ |     ||  |  |     T|     ||    \\ |   [_ |    \\  /  \\ |\n" +
-                "|     ||  |  |l     !|   |   ||     T    |     T|  |  ||  |  |     |l     !|  .  Y|     T|  .  Y \\    |\n" +
-                "l___,_jl__j__j \\___/ l___j___jl_____j    l_____j|__j__|l__j  l_____j \\___/ l__j\\_jl_____jl__j\\_j  \\___j";
-        String CompanyName = "- Wild Llama Entertainment -\n";
-        System.out.println(GameName);
-        System.out.printf(" %68s\n", CompanyName);
-        System.out.print("Please enter your name adventurer: ");
-        String playerName = keyboard.nextLine();
-        System.out.printf("Wild Llama Entertainment welcomes you to our game \"%s\" \n", playerName);
-        System.out.println(" ");
-        //Maybe we should add a start button
-        */
 
         String playerName;
 
