@@ -44,7 +44,9 @@ public class Main {
 
         int choice;
 
-        System.out.println("Wild Llama Entertainment proudly presents..");
+        String companyName = "Wild Llama Entertainment";
+
+        System.out.printf("%s proudly presents.. \n", companyName);
         System.out.println("  ____  ____    ___   ___ ___    ___        ___  __ __  ____  _       ___   ____     ___  ____    _____\n" +
                 " /    T|    \\  /   \\ |   T   T  /  _]      /  _]|  T  T|    \\| T     /   \\ |    \\   /  _]|    \\  / ___/\n" +
                 "Y   __j|  _  YY     Y| _   _ | /  [_      /  [_ |  |  ||  o  ) |    Y     Y|  D  ) /  [_ |  D  )(   \\_ \n" +
