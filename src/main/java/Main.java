@@ -35,8 +35,8 @@ public class Main {
         try {
             setTnsAdmin();
             String db_url = "jdbc:oracle:thin:@wildllamaent_medium";
-            String username = "INTEGRATION PROJECT";
-            String password = "WildLlamaEntertainment1";
+            String username = System.getenv("DB_USERNAME");
+            String password = System.getenv("DB_PASSWORD");
 
             conn = DriverManager.getConnection(db_url, username, password);
             if(conn != null) {
