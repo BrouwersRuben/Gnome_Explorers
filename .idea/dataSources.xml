@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="WILDLLAMAENT" uuid="b9ed94a4-a9d3-435d-9049-b017c8c68c98">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>Database for the integration project</remarks>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@wildllamaent_medium</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="$PROJECT_DIR$/db" />
+      </jdbc-additional-properties>
+    </data-source>
+  </component>
+</project>
