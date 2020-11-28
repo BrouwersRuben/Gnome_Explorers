@@ -46,6 +46,9 @@ public class Main {
             if(conn != null) {
                 System.out.println("Connected to the database.");
                 statement = conn.createStatement();
+
+                // Creating the table for the leaderboard
+                // statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25) primary key, end_time timestamp not null, score number not null)");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
