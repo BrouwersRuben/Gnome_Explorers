@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +17,10 @@ public class Main {
     // Starting position
     private static int x = 0;
     private static int y = 0;
+
+    // Database specific variables
+    private static Connection conn = null;
+    private static Statement statement = null;
 
     // Enable the connection to the database with the tnsnames.ora
     public static void setTnsAdmin() {
@@ -31,7 +36,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Connection conn = null;
         try {
             setTnsAdmin();
             String db_url = "jdbc:oracle:thin:@wildllamaent_medium";
@@ -41,6 +45,7 @@ public class Main {
             conn = DriverManager.getConnection(db_url, username, password);
             if(conn != null) {
                 System.out.println("Connected to the database.");
+                statement = conn.createStatement();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -48,6 +53,9 @@ public class Main {
             try {
                 if(conn != null && !conn.isClosed()) {
                     conn.close();
+                }
+                if(statement != null && !statement.isClosed()) {
+                    statement.close();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
