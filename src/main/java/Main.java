@@ -14,6 +14,9 @@ public class Main {
     // Game over boolean to be switched when game ended
     private static boolean gameOver;
 
+    // Player score
+    private static int score = 0;
+
     // Starting position
     private static int x = 0;
     private static int y = 0;
@@ -168,6 +171,9 @@ public class Main {
 
         if(key == 'D' || key == 'd') x++;
 
+        // Increment player score as placeholder
+        score += 10;
+
         System.out.printf("Player position: | x: %2d | y: %2d | %n", x, y);
 
     }
@@ -183,6 +189,7 @@ public class Main {
                 "                                                   \n" +
                 "                                                   ";
         System.out.print(EndGame + "\n");
+        System.out.printf("Final score: %d points", score);
     }
 }
 
