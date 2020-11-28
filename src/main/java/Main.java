@@ -1,5 +1,9 @@
 package main.java;
 
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +17,43 @@ public class Main {
     private static int x = 0;
     private static int y = 0;
 
+    // Enable the connection to the database with the tnsnames.ora
+    public static void setTnsAdmin() {
+        String tnsAdmin = System.getenv("TNS_ADMIN");
+        if (tnsAdmin == null) {
+            String oracleHome = System.getenv("ORACLE_HOME");
+            if (oracleHome == null) {
+                return; //failed to find any useful env variables
+            }
+            tnsAdmin = oracleHome + File.separatorChar + "network" + File.separatorChar + "admin";
+        }
+        System.setProperty("oracle.net.tns_admin", tnsAdmin);
+    }
+
     public static void main(String[] args) {
+        Connection conn = null;
+        try {
+            setTnsAdmin();
+            String db_url = "jdbc:oracle:thin:@wildllamaent_medium";
+            String username = "INTEGRATION PROJECT";
+            String password = "WildLlamaEntertainment1";
+
+            conn = DriverManager.getConnection(db_url, username, password);
+            if(conn != null) {
+                System.out.println("Connected to the database.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         showMainMenu();
         if(!gameOver) {
             playGame();
