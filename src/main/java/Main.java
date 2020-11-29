@@ -14,8 +14,11 @@ public class Main {
     // Game over boolean to be switched when game ended
     private static boolean gameOver;
 
-    // Player score
-    private static int score = 0;
+    // Player related variables
+    // TODO: Update from hardcoded
+    private static String playerName;
+    private static String playerTime = "2020-11-29 12:00:00";
+    private static int playerScore = 0;
 
     // Starting position
     private static int x = 0;
@@ -77,8 +80,6 @@ public class Main {
 
     private static void showMainMenu() {
 
-        String playerName;
-
         int choice;
 
         String companyName = "Wild Llama Entertainment";
@@ -119,6 +120,8 @@ public class Main {
         //String cutPlayerName = playerName.substring(0,15);
         //I wanted to show the players name in the top left of the game window, next to the timer.
         String timer = "00:00"; //This timer will work, and start when the game starts
+        // TODO: Update this to work with playerTimer variable
+
         String startGameWindow = "#-------------------#\n" +
                 "| k                 |\n" +
                 "|                   |\n" +
@@ -172,7 +175,7 @@ public class Main {
         if(key == 'D' || key == 'd') x++;
 
         // Increment player score as placeholder
-        score += 10;
+        playerScore += 10;
 
         System.out.printf("Player position: | x: %2d | y: %2d | %n", x, y);
 
@@ -189,7 +192,8 @@ public class Main {
                 "                                                   \n" +
                 "                                                   ";
         System.out.print(EndGame + "\n");
-        System.out.printf("Final score: %d points", score);
+        System.out.printf("%s's final score: %d points\n", playerName, playerScore);
+        System.out.printf("Time: %s", playerTime);
     }
 }
 
