@@ -1,0 +1,10 @@
+wildllamaent_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.eu-amsterdam-1.oraclecloud.com))(connect_data=(service_name=qh46sw9ozyvt3tg_wildllamaent_high.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.eu-amsterdam-1.oraclecloud.com,OU=Oracle ADB AMSTERDAM,O=Oracle Corporation,L=Redwood City,ST=California,C=US")))
+
+wildllamaent_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.eu-amsterdam-1.oraclecloud.com))(connect_data=(service_name=qh46sw9ozyvt3tg_wildllamaent_low.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.eu-amsterdam-1.oraclecloud.com,OU=Oracle ADB AMSTERDAM,O=Oracle Corporation,L=Redwood City,ST=California,C=US")))
+
+wildllamaent_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.eu-amsterdam-1.oraclecloud.com))(connect_data=(service_name=qh46sw9ozyvt3tg_wildllamaent_medium.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.eu-amsterdam-1.oraclecloud.com,OU=Oracle ADB AMSTERDAM,O=Oracle Corporation,L=Redwood City,ST=California,C=US")))
+
+wildllamaent_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.eu-amsterdam-1.oraclecloud.com))(connect_data=(service_name=qh46sw9ozyvt3tg_wildllamaent_tp.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.eu-amsterdam-1.oraclecloud.com,OU=Oracle ADB AMSTERDAM,O=Oracle Corporation,L=Redwood City,ST=California,C=US")))
+
+wildllamaent_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.eu-amsterdam-1.oraclecloud.com))(connect_data=(service_name=qh46sw9ozyvt3tg_wildllamaent_tpurgent.adb.oraclecloud.com))(security=(ssl_server_cert_dn="CN=adb.eu-amsterdam-1.oraclecloud.com,OU=Oracle ADB AMSTERDAM,O=Oracle Corporation,L=Redwood City,ST=California,C=US")))
+
