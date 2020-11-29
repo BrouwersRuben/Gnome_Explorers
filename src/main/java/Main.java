@@ -1,10 +1,7 @@
 package main.java;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -55,7 +52,7 @@ public class Main {
                 statement = conn.createStatement();
 
                 // Creating the table for the leaderboard
-                // statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25) primary key, end_time timestamp not null, score number not null)");
+                // statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25), end_time timestamp not null, score number not null)");
 
                 showMainMenu();
                 if(!gameOver) {
@@ -95,13 +92,16 @@ public class Main {
                 "|     ||  |  |l     !|   |   ||     T    |     T|  |  ||  |  |     |l     !|  .  Y|     T|  .  Y \\    |\n" +
                 "l___,_jl__j__j \\___/ l___j___jl_____j    l_____j|__j__|l__j  l_____j \\___/ l__j\\_jl_____jl__j\\_j  \\___j");
 
-        System.out.println("\n\tNew Game\n Press 1 to continue\n Press 2 to exit");
+        System.out.println("\n\tNew Game\n Press 1 to continue\n Press 2 to show leaderboard\n Press 3 to exit");
 
         choice = keyboard.nextInt();
 
-        if (choice == 2) {
+        if (choice == 3) {
             System.out.println("Untraveled paths dismay the frail. Return with more valiance.");
-            gameOver = true;
+            System.exit(0);
+            return;
+        } else if (choice == 2) {
+            showLeaderboard();
             return;
         } else if (choice == 1) {
             System.out.println("\tEnter your name");
@@ -214,6 +214,24 @@ public class Main {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private static void showLeaderboard() {
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM (SELECT player_name, end_time, score FROM INT_leaderboard ORDER BY score DESC) WHERE ROWNUM <= 5");
+
+            System.out.printf("%-10s %-10s %-10s%n", "Name", "Time", "Score");
+            while (resultSet.next()) {
+                String name = resultSet.getString(1);
+                Timestamp time = resultSet.getTimestamp(2);
+                int score = resultSet.getInt(3);
+
+                System.out.printf("%-10s %tT %5d%n", name, time, score);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 }
 
