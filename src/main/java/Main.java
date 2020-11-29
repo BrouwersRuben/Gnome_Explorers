@@ -56,6 +56,13 @@ public class Main {
 
                 // Creating the table for the leaderboard
                 // statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25) primary key, end_time timestamp not null, score number not null)");
+
+                showMainMenu();
+                if(!gameOver) {
+                    playGame();
+                }
+                endGame();
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -71,12 +78,6 @@ public class Main {
                 ex.printStackTrace();
             }
         }
-
-        showMainMenu();
-        if(!gameOver) {
-            playGame();
-        }
-        endGame();
     }
 
     private static void showMainMenu() {
@@ -206,6 +207,13 @@ public class Main {
         playerTime = new java.sql.Timestamp(now.getTime());
 
         System.out.printf("Time: %s", playerTime);
+
+        try {
+            String insertPlayerData = "INSERT INTO INT_leaderboard (player_name, end_time, score) VALUES ('" + playerName + "', CURRENT_TIMESTAMP, " + playerScore + ")";
+            statement.execute(insertPlayerData);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
 
