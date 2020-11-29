@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Main {
@@ -17,7 +18,7 @@ public class Main {
     // Player related variables
     // TODO: Update from hardcoded
     private static String playerName;
-    private static String playerTime = "2020-11-29 12:00:00";
+    private static java.sql.Timestamp playerTime = null;
     private static int playerScore = 0;
 
     // Starting position
@@ -193,6 +194,17 @@ public class Main {
                 "                                                   ";
         System.out.print(EndGame + "\n");
         System.out.printf("%s's final score: %d points\n", playerName, playerScore);
+
+        // 1) create a java calendar instance
+        Calendar calendar = Calendar.getInstance();
+
+        // 2) get a java.util.Date from the calendar instance.
+        //    this date will represent the current instant, or "now".
+        java.util.Date now = calendar.getTime();
+
+        // 3) a java current time (now) instance
+        playerTime = new java.sql.Timestamp(now.getTime());
+
         System.out.printf("Time: %s", playerTime);
     }
 }
