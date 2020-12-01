@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class Main {
 
-    private static Animal player;
+    public static Animal player;
     private static Interface ui;
 
     public static Connection conn = null;
