@@ -1,5 +1,8 @@
 package main.java;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.*;
 import java.util.Calendar;
@@ -13,14 +16,17 @@ public class Main {
     private static boolean gameOver;
 
     // Player related variables
-    // TODO: Update from hardcoded
     private static String playerName;
     private static java.sql.Timestamp playerTime = null;
     private static int playerScore = 0;
+    private static Animal player;
 
     // Starting position
     private static int x = 0;
     private static int y = 0;
+
+    // UI related variables
+    private static UserInterface ui;
 
     // Database specific variables
     private static Connection conn = null;
@@ -119,11 +125,12 @@ public class Main {
 
 
     private static void playGame() {
-        //String cutPlayerName = playerName.substring(0,15);
-        //I wanted to show the players name in the top left of the game window, next to the timer.
-        String timer = "00:00"; //This timer will work, and start when the game starts
-        // TODO: Update this to work with playerTimer variable
 
+        player = new Animal("player", 'P', Color.white, 10, 10);
+
+        ui = new UserInterface(playerName, 80, 24);
+
+        String timer = "00:00"; //This timer will work, and start when the game starts
         String startGameWindow = "#-------------------#\n" +
                 "| k                 |\n" +
                 "|                   |\n" +
@@ -133,22 +140,9 @@ public class Main {
                 "|                   |\n" +
                 "|                   |\n" +
                 "#-------------------#";
-        //Player position = x11, y5
+
         System.out.printf("%21s \n", timer);
         System.out.printf("%s\n",startGameWindow);
-        /*
-        //If the player reaches the door (X21, Y5), then the new window will appear. (and so on, until all windows are explored)
-        String gameWindow2 = "#-------------------#\n" +
-                "|                   |\n" +
-                "|                   |\n" +
-                "#                   #\n" +
-                "\n" +
-                "#                   #\n" +
-                "|                   |\n" +
-                "|                   |\n" +
-                "#-------#  #--------#";
-         */
-
         System.out.println("Use WASD to move!");
 
         // Repeat movement until game over
@@ -163,8 +157,30 @@ public class Main {
     }
 
     private static void movePlayer() {
+        InputEvent event = ui.getNextInput();
 
-        // User input. TODO: Replace with KeyListener
+        if (event instanceof KeyEvent) {
+            KeyEvent keypress = (KeyEvent)event;
+            switch (keypress.getKeyCode()){
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
+                    player.move(0, -1);
+                    break;
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
+                    player.move(0, 1);
+                    break;
+                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_A:
+                    player.move(-1, 0);
+                    break;
+                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_D:
+                    player.move(1, 0);
+                    break;
+            }
+        }
+
         char key = keyboard.next().charAt(0);
 
         // Change player position based on key pressed
