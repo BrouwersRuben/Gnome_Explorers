@@ -26,7 +26,7 @@ public class StartWindow implements Window {
     public Window respondToUserInput(KeyEvent key) {
         switch(key.getKeyCode()) {
             case KeyEvent.VK_1:
-                return new PlayWindow();
+                return new PrologueWindow();
             case KeyEvent.VK_2:
                 return new LeaderboardWindow();
             case KeyEvent.VK_3:

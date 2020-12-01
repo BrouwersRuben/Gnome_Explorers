@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static main.java.ui.PrologueWindow.playerName;
+
 public class Main {
 
     public static Animal player;
@@ -75,9 +77,9 @@ public class Main {
 
     public static void endGame() {
         try {
-            String insertPlayerData = "INSERT INTO INT_leaderboard (player_name, end_time, score) VALUES ('" + "mihnea" + "', CURRENT_TIMESTAMP, " + "0" + ")";
+            String insertPlayerData = "INSERT INTO INT_leaderboard (player_name, end_time, score) VALUES ('" + playerName + "', CURRENT_TIMESTAMP, " + "0" + ")";
             statement.execute(insertPlayerData);
-            System.out.println("Successfully inserted the player to the database.");
+            System.out.println("Successfully inserted the player named " + playerName + " to the database.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
