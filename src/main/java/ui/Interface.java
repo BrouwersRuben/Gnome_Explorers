@@ -4,13 +4,17 @@ import asciiPanel.AsciiPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Interface extends JFrame implements KeyListener {
     private AsciiPanel terminal;
     private Queue<InputEvent> inputQueue;
+
+    private Window window;
 
     public Interface(int screenWidth, int screenHeight) {
         super("Gnome Explorers");
@@ -21,17 +25,16 @@ public class Interface extends JFrame implements KeyListener {
 
         pack();
 
-        terminal.writeCenter("GNOME EXPLORERS", 1);
+        window = new StartWindow();
 
         super.addKeyListener(this);
-        super.setSize(screenWidth*9, screenHeight*16);
         super.setVisible(true);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        super.repaint();
+        repaint();
     }
 
-    public void clear() {
-        terminal.clear();
+    public void clear(char symbol) {
+        terminal.clear(symbol);
     }
 
     public void drawChar(char symbol, int xPos, int yPos, Color color) {
@@ -46,9 +49,17 @@ public class Interface extends JFrame implements KeyListener {
         terminal.repaint();
     }
 
+    public void repaint(){
+        terminal.clear();
+        window.displayOutput(terminal);
+        super.repaint();
+    }
+
     @Override
     public void keyPressed(KeyEvent e) {
+        window = window.respondToUserInput(e);
         inputQueue.add(e);
+        repaint();
     }
 
     @Override

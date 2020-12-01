@@ -127,7 +127,7 @@ public class Main {
 
         player = new Animal("player", 'P', Color.white, 10, 10);
 
-        ui = new Interface(80, 24);
+        ui = new Interface(144, 48);
     }
 
 
@@ -153,9 +153,9 @@ public class Main {
     }
 
     private static void renderGame()  {
-        ui.clear();
-        ui.drawChar(player.getSymbol(), player.getX(), player.getY(), player.getColor());
-        ui.refresh();
+//        ui.clear(player.getSymbol());
+//        ui.drawChar(player.getSymbol(), player.getX(), player.getY(), player.getColor());
+//        ui.refresh();
     }
 
     private static void movePlayer() {
