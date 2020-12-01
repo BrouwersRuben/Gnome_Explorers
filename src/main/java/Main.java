@@ -156,6 +156,12 @@ public class Main {
         }
     }
 
+    private static void renderGame()  {
+        ui.clear();
+        ui.drawChar(player.getSymbol(), player.getX(), player.getY(), player.getColor());
+        ui.refresh();
+    }
+
     private static void movePlayer() {
         InputEvent event = ui.getNextInput();
         if (event instanceof KeyEvent) {
