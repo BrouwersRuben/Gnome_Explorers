@@ -1,5 +1,6 @@
 package main.java;
 
+// General auto imports and java related
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -7,6 +8,9 @@ import java.io.File;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Scanner;
+
+// Specific package imports
+import main.java.entities.Animal;
 
 public class Main {
     // User input

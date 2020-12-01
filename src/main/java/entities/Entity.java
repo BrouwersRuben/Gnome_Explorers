@@ -6,7 +6,7 @@ public class Entity {
     protected int x;
     protected int y;
 
-    protected String type;
+    protected String name;
     protected char symbol;
     protected Color color;
 
@@ -21,15 +21,15 @@ public class Entity {
         return this.symbol;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
     public Color getColor() {
         return this.color;
     }
 
     public Entity(String name, char symbol, Color color, int xPos, int yPos) {
-        this.type = name;
+        this.name = name;
         this.symbol = symbol;
         this.color = color;
         this.x = xPos;
