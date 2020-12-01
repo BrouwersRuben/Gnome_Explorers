@@ -21,9 +21,9 @@ public class Main {
     private static int playerScore = 0;
     private static Animal player;
 
-    // Starting position
-    private static int x = 0;
-    private static int y = 0;
+    // Limit game to 60 updates per second so it runs the same on all machines
+    private static int fps = 60;
+    private static int times = 1000000000 / fps;
 
     // UI related variables
     private static UserInterface ui;
@@ -120,38 +120,29 @@ public class Main {
 
         System.out.println("Prepare, " + playerName + ", for adventure awaits you...");
 
-        // "Enter your name' isn't aligned with "new game" and I can't figure out how to use souf or anything else to fix this :/
+        player = new Animal("player", 'P', Color.white, 10, 10);
+
+        ui = new UserInterface(playerName, 80, 24);
     }
 
 
     private static void playGame() {
-
-        player = new Animal("player", 'P', Color.white, 10, 10);
-
-        ui = new UserInterface(playerName, 80, 24);
-
-        String timer = "00:00"; //This timer will work, and start when the game starts
-        String startGameWindow = "#-------------------#\n" +
-                "| k                 |\n" +
-                "|                   |\n" +
-                "|                   #\n" +
-                "|         P\n" +
-                "|                   #\n" +
-                "|                   |\n" +
-                "|                   |\n" +
-                "#-------------------#";
-
-        System.out.printf("%21s \n", timer);
-        System.out.printf("%s\n",startGameWindow);
-        System.out.println("Use WASD to move!");
-
-        // Repeat movement until game over
+        gameOver = false;
         while(!gameOver) {
-            movePlayer();
+            long startTime = System.nanoTime();
 
-            // Sample game over condition
-            if(x == 5 || y == 5 || x == -5 || y == -5) {
-                gameOver = true;
+            movePlayer();
+            renderGame();
+
+            long endTime = System.nanoTime();
+            long sleepTime = times - (endTime-startTime);
+
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime/1000000);
+                } catch (InterruptedException e) {
+                    gameOver = true;
+                }
             }
         }
     }
