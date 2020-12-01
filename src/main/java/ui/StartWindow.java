@@ -4,6 +4,8 @@ import asciiPanel.AsciiPanel;
 
 import java.awt.event.KeyEvent;
 
+import static main.java.Main.closeDb;
+
 public class StartWindow implements Window {
 
     public void displayOutput(AsciiPanel terminal) {
@@ -28,6 +30,7 @@ public class StartWindow implements Window {
             case KeyEvent.VK_2:
                 return new LeaderboardWindow();
             case KeyEvent.VK_3:
+                closeDb();
                 System.exit(0);
             default:
                 return this;

@@ -4,11 +4,11 @@ import asciiPanel.AsciiPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import static main.java.Main.closeDb;
 
 public class Interface extends JFrame implements KeyListener {
     private AsciiPanel terminal;
@@ -29,12 +29,26 @@ public class Interface extends JFrame implements KeyListener {
 
         super.addKeyListener(this);
         super.setVisible(true);
-        super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        final Interface gui = this;
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                int i = JOptionPane.showConfirmDialog(gui,
+                        "Close Gnome Explorers?", "Closing dialog",
+                        JOptionPane.YES_NO_OPTION);
+                if (i == JOptionPane.YES_OPTION) {
+                    closeDb();
+                    System.exit(0);
+                }
+            }
+        });
+
         repaint();
     }
 
-    public void clear(char symbol) {
-        terminal.clear(symbol);
+    public void clear() {
+        terminal.clear();
     }
 
     public void drawChar(char symbol, int xPos, int yPos, Color color) {
