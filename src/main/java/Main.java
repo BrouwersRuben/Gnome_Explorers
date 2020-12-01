@@ -34,8 +34,8 @@ public class Main {
     private static Interface ui;
 
     // Database specific variables
-    private static Connection conn = null;
-    private static Statement statement = null;
+    public static Connection conn = null;
+    public static Statement statement = null;
 
     // Enable the connection to the database with the tnsnames.ora
     public static void setTnsAdmin() {
@@ -111,9 +111,6 @@ public class Main {
             System.out.println("Untraveled paths dismay the frail. Return with more valiance.");
             System.exit(0);
             return;
-        } else if (choice == 2) {
-            showLeaderboard();
-            return;
         } else if (choice == 1) {
             System.out.println("\tEnter your name");
         } else {
@@ -125,7 +122,7 @@ public class Main {
 
         System.out.println("Prepare, " + playerName + ", for adventure awaits you...");
 
-        player = new Animal("player", 'P', Color.white, 10, 10);
+        player = new Animal("player", 'G', Color.white, 10, 10);
 
         ui = new Interface(144, 48);
     }
@@ -214,24 +211,6 @@ public class Main {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
-
-    private static void showLeaderboard() {
-        try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM (SELECT player_name, end_time, score FROM INT_leaderboard ORDER BY score DESC) WHERE ROWNUM <= 5");
-
-            System.out.printf("%-10s %-10s %-10s%n", "Name", "Time", "Score");
-            while (resultSet.next()) {
-                String name = resultSet.getString(1);
-                Timestamp time = resultSet.getTimestamp(2);
-                int score = resultSet.getInt(3);
-
-                System.out.printf("%-10s %tT %5d%n", name, time, score);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
     }
 }
 
