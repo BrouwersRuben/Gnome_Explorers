@@ -73,10 +73,11 @@ public class Main {
         ui = new Interface(144, 48);
     }
 
-    private static void endGame() {
+    public static void endGame() {
         try {
             String insertPlayerData = "INSERT INTO INT_leaderboard (player_name, end_time, score) VALUES ('" + "mihnea" + "', CURRENT_TIMESTAMP, " + "0" + ")";
             statement.execute(insertPlayerData);
+            System.out.println("Successfully inserted the player to the database.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
