@@ -86,3 +86,6 @@ public class Main {
     }
 }
 
+//I have added our company name in the game title
+//I have added some graphics in the WinWindow.java file
+
