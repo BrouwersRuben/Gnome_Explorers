@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 // Specific package imports
 import main.java.entities.Animal;
+import main.java.ui.Interface;
 
 public class Main {
     // User input
@@ -30,7 +31,7 @@ public class Main {
     private static int times = 1000000000 / fps;
 
     // UI related variables
-    private static UserInterface ui;
+    private static Interface ui;
 
     // Database specific variables
     private static Connection conn = null;
@@ -126,7 +127,7 @@ public class Main {
 
         player = new Animal("player", 'P', Color.white, 10, 10);
 
-        ui = new UserInterface(playerName, 80, 24);
+        ui = new Interface(80, 24);
     }
 
 
