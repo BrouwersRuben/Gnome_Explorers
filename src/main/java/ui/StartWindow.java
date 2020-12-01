@@ -16,10 +16,21 @@ public class StartWindow implements Window {
         terminal.writeCenter("                                             | |                              ", 7);
         terminal.writeCenter("                                             |_|                              ", 8);
 
-        terminal.writeCenter("Press 1 to start game", 10);
+        terminal.writeCenter("1 - Start game", 12);
+        terminal.writeCenter("2 - Leaderboards", 13);
+        terminal.writeCenter("3 - Exit", 14);
     }
 
     public Window respondToUserInput(KeyEvent key) {
-        return key.getKeyCode() == KeyEvent.VK_1 ? new PlayWindow() : this;
+        switch(key.getKeyCode()) {
+            case KeyEvent.VK_1:
+                return new PlayWindow();
+            case KeyEvent.VK_2:
+                return new LeaderboardWindow();
+            case KeyEvent.VK_3:
+                System.exit(0);
+            default:
+                return this;
+        }
     }
 }

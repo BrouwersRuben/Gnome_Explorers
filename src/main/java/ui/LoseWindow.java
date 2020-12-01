@@ -8,7 +8,7 @@ public class LoseWindow implements Window {
 
     public void displayOutput(AsciiPanel terminal) {
         terminal.write("Unfortunately the gnomes lost their way in the dark.. You have lost!", 1, 1);
-        terminal.writeCenter("Press [ENTER] to restart the game", 5);
+        terminal.writeCenter("Press [ENTER] to restart the game", 22);
     }
 
     public Window respondToUserInput(KeyEvent key) {
