@@ -158,7 +158,6 @@ public class Main {
 
     private static void movePlayer() {
         InputEvent event = ui.getNextInput();
-
         if (event instanceof KeyEvent) {
             KeyEvent keypress = (KeyEvent)event;
             switch (keypress.getKeyCode()){
@@ -180,23 +179,6 @@ public class Main {
                     break;
             }
         }
-
-        char key = keyboard.next().charAt(0);
-
-        // Change player position based on key pressed
-        if(key == 'W' || key == 'w') y++;
-
-        if(key == 'S' || key == 's') y--;
-
-        if(key == 'A' || key == 'a') x--;
-
-        if(key == 'D' || key == 'd') x++;
-
-        // Increment player score as placeholder
-        playerScore += 10;
-
-        System.out.printf("Player position: | x: %2d | y: %2d | %n", x, y);
-
     }
 
     private static void endGame() {
