@@ -9,6 +9,7 @@ import static main.java.Main.*;
 public class PlayWindow implements Window {
 
     private static int gameTimer;
+    public static int gameScore;
 
     private static boolean tutorial = true;
     private static boolean timerStarted = false;
@@ -21,10 +22,11 @@ public class PlayWindow implements Window {
         } else {
             if(!timerStarted) {
                 gameTimer = 10;
+                gameScore = 0;
                 timerStarted = true;
                 startGameTimer();
             }
-            terminal.write("TIME LEFT: " + gameTimer + " seconds", 1, 1);
+            terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points", 1, 1);
         }
         terminal.write(player.getSymbol(), player.getX(), player.getY(), player.getColor());
     }
@@ -54,6 +56,10 @@ public class PlayWindow implements Window {
         player.setY(startingY);
     }
 
+    private void increaseScore() {
+        gameScore += 5;
+    }
+
     public Window respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_ESCAPE:
@@ -62,18 +68,22 @@ public class PlayWindow implements Window {
                 return new WinWindow();
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
+                increaseScore();
                 player.move(0, -1);
                 return this;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
+                increaseScore();
                 player.move(0, 1);
                 return this;
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
+                increaseScore();
                 player.move(-1, 0);
                 return this;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
+                increaseScore();
                 player.move(1, 0);
                 return this;
             default:
