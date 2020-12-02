@@ -89,3 +89,5 @@ public class Main {
     }
 }
 
+//The ability to remove characters from the name when you enter it...
+
