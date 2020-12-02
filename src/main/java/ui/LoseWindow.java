@@ -11,7 +11,15 @@ public class LoseWindow implements Window {
     private static boolean addedToDb = false;
 
     public void displayOutput(AsciiPanel terminal) {
-        terminal.write("Unfortunately the gnomes lost their way in the dark.. You have lost!", 1, 1);
+        terminal.writeCenter(" ___    ____  ", 1);
+        terminal.writeCenter("|   |  |    | ", 2);
+        terminal.writeCenter("|___| |    _| ", 3);
+        terminal.writeCenter(" ___  |   |   ", 4);
+        terminal.writeCenter("|   | |   |   ", 5);
+        terminal.writeCenter("|___| |   |_  ", 6);
+        terminal.writeCenter("       |____| ", 7);
+
+        terminal.write("Unfortunately the gnomes lost their way in the dark.. You have lost!", 1, 9);
         terminal.writeCenter("Press [ENTER] to restart the game", 22);
         if (!addedToDb) {
             addedToDb = true;
