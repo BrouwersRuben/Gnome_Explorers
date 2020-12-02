@@ -22,7 +22,6 @@ public class PrologueWindow implements Window {
         } else {
             // Alphanumeric character codes
             if((((keyCode>=65)&&(keyCode<=90))||((keyCode>=97)&&(keyCode<=122))||((keyCode>=48)&&(keyCode<=57)))) {
-                System.out.println("key.getKeyCode(): " + key.getKeyChar());
                 sb.append(key.getKeyChar());
             }
             return this;
