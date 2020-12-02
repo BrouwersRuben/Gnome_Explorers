@@ -10,7 +10,7 @@ import static main.java.Main.closeDb;
 public class Interface extends JFrame implements KeyListener {
     private AsciiPanel terminal;
 
-    private Window window;
+    public Window window;
 
     public Interface(int screenWidth, int screenHeight) {
         super("Gnome Explorers");

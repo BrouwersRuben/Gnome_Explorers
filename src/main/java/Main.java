@@ -15,7 +15,9 @@ import static main.java.ui.PrologueWindow.playerName;
 public class Main {
 
     public static Animal player;
-    private static Interface ui;
+    public static int startingX = 10;
+    public static int startingY = 10;
+    public static Interface ui;
 
     public static Connection conn = null;
     public static Statement statement = null;
@@ -71,7 +73,7 @@ public class Main {
     }
 
     private static void showGameWindow() {
-        player = new Animal("player", 'G', Color.white, 10, 10);
+        player = new Animal("player", 'G', Color.white, startingX, startingY);
         ui = new Interface(144, 48);
     }
 
