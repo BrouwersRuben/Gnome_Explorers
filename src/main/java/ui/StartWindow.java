@@ -22,6 +22,7 @@ public class StartWindow implements Window {
         terminal.writeCenter("1 - Start game", 12);
         terminal.writeCenter("2 - Leaderboards", 13);
         terminal.writeCenter("3 - Exit", 14);
+        terminal.write("beta-version 0.1",62, 22);
     }
 
     public Window respondToUserInput(KeyEvent key) {

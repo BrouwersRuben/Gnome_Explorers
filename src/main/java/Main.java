@@ -94,4 +94,5 @@ public class Main {
 //I have added some graphics to the LoseWindow.java file
 //I have added some graphics to the LeaderbordWindow.java file
 //I have added some new logic and a game floor (hardcoded) to the play window
+//I added 'beta-version 0.1' to the start screen
 
