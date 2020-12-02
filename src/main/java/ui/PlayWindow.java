@@ -4,19 +4,54 @@ import asciiPanel.AsciiPanel;
 
 import java.awt.event.KeyEvent;
 
-import static main.java.Main.player;
+import static main.java.Main.*;
 
 public class PlayWindow implements Window {
 
+    private static int gameTimer;
+
     private static boolean tutorial = true;
+    private static boolean timerStarted = false;
 
     public void displayOutput(AsciiPanel terminal) {
         if(tutorial) {
-            terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around!", 1);
+            terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around! You lose when timer reaches 0.", 1);
             terminal.writeCenter("Press [ESC] to lose or [ENTER] to win", 22);
             tutorial = false;
+        } else {
+            if(!timerStarted) {
+                gameTimer = 10;
+                timerStarted = true;
+                startGameTimer();
+            }
+            terminal.write("TIME LEFT: " + gameTimer + " seconds", 1, 1);
         }
         terminal.write(player.getSymbol(), player.getX(), player.getY(), player.getColor());
+    }
+
+    private void startGameTimer() {
+        Thread newThread = new Thread(() -> {
+            while(gameTimer > 0) {
+                try {
+                    Thread.sleep(1000);
+                    gameTimer = gameTimer - 1;
+                    ui.window = new PlayWindow();
+                    ui.repaint();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            resetVariables();
+            ui.window = new LoseWindow();
+        });
+        newThread.start();
+    }
+
+    private void resetVariables() {
+        tutorial = true;
+        timerStarted = false;
+        player.setX(startingX);
+        player.setY(startingY);
     }
 
     public Window respondToUserInput(KeyEvent key) {
