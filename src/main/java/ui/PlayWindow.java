@@ -56,8 +56,7 @@ public class PlayWindow implements Window {
 
             if(gameScore > 300) {
                 ui.window = new WinWindow();
-                //Will this work?
-            } if (gameTimer == 0 && gameScore < 50){
+            } else {
                 ui.window = new LoseWindow();
             }
         });

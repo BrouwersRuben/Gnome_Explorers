@@ -17,7 +17,7 @@ public class StartWindow implements Window {
         terminal.writeCenter(" \\____/_| |_|\\___/|_| |_| |_|\\___|  \\___/_/\\_\\ .__/|_|\\___/|_|  \\___|_|  |___/", 6);
         terminal.writeCenter("                                             | |                              ", 7);
         terminal.writeCenter("                                             |_|                              ", 8);
-        terminal.writeCenter("                        *- Wild Llama Entertainment -*                        ", 9);
+        terminal.writeCenter("                        *- Wild Llama Entertainment -*                        ", 10);
 
         terminal.writeCenter("1 - Start game", 12);
         terminal.writeCenter("2 - Leaderboards", 13);

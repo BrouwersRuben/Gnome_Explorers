@@ -11,7 +11,7 @@ public class WinWindow implements Window {
     private static boolean addedToDb = false;
 
     public void displayOutput(AsciiPanel terminal) {
-        terminal.write("The gnomes found the way out! You have won!", 1, 1);
+        terminal.writeCenter("The gnomes found the way out! You have won!", 5);
         terminal.writeCenter(" _______  _______ ", 7);
         terminal.writeCenter("|       ||       |", 8);
         terminal.writeCenter("|    ___||    ___|", 9);

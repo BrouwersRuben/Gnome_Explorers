@@ -19,7 +19,7 @@ public class LoseWindow implements Window {
         terminal.writeCenter("|___| |   |_  ", 12);
         terminal.writeCenter("       |____| ", 13);
 
-        terminal.write("Unfortunately the gnomes lost their way in the dark.. You have lost!", 1, 9);
+        terminal.writeCenter("Unfortunately the gnomes lost their way in the dark.. You have lost!", 5 );
         terminal.writeCenter("[ENTER] - play again | [ESC] - go to main menu | [L] - go to leaderboard", 22);
         if (!addedToDb) {
             addedToDb = true;
