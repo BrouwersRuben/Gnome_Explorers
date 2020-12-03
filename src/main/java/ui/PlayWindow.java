@@ -8,22 +8,6 @@ import static main.java.Main.*;
 
 public class PlayWindow implements Window {
 
-
-    public void gameWindow(AsciiPanel terminal){
-        //hardcoded for now, but is supposed to be loaded from a file, look 'resources/floors/floor1.txt
-        //I took that straight from the wireframe, could be made a little bigger tho...
-
-        terminal.write("+------------------+", 1, 2);
-        terminal.write("|                  |", 1,3);
-        terminal.write("|                  |", 1,4);
-        terminal.write("|                   ", 1,5);
-        terminal.write("|                   ", 1,6);
-        terminal.write("|                  |", 1,7);
-        terminal.write("|                  |", 1,8);
-        terminal.write("+------------------+", 1, 9);
-
-    }
-
     private static int gameTimer;
     public static int gameScore;
 
@@ -43,9 +27,15 @@ public class PlayWindow implements Window {
                 startGameTimer();
             }
             terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points", 1, 1);
-            //I've tried to add it this way, but it will not work...
-            //terminal.write(gameWindow());
         }
+        terminal.write("####################", 1, 2);
+        terminal.write("#                  #", 1,3);
+        terminal.write("#                  #", 1,4);
+        terminal.write("#                   ", 1,5);
+        terminal.write("#                   ", 1,6);
+        terminal.write("#                  #", 1,7);
+        terminal.write("#                  #", 1,8);
+        terminal.write("####################", 1, 9);
         terminal.write(player.getSymbol(), player.getX(), player.getY(), player.getColor());
     }
 

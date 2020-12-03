@@ -16,8 +16,8 @@ import static main.java.ui.PrologueWindow.playerName;
 public class Main {
 
     public static Animal player;
-    public static int startingX = 10;
-    public static int startingY = 10;
+    public static int startingX = 5;
+    public static int startingY = 5;
     public static Interface ui;
 
     public static Connection conn = null;
@@ -88,4 +88,3 @@ public class Main {
         }
     }
 }
-
