@@ -20,7 +20,7 @@ public class LoseWindow implements Window {
         terminal.writeCenter("       |____| ", 7);
 
         terminal.write("Unfortunately the gnomes lost their way in the dark.. You have lost!", 1, 9);
-        terminal.writeCenter("Press [ENTER] to restart the game", 22);
+        terminal.writeCenter("[ENTER] - play again | [ESC] - go to main menu | [L] - go to leaderboard", 22);
         if (!addedToDb) {
             addedToDb = true;
             endGame();
@@ -32,11 +32,18 @@ public class LoseWindow implements Window {
     }
 
     public Window respondToUserInput(KeyEvent key) {
-        if(key.getKeyCode() == KeyEvent.VK_ENTER) {
-            resetVariables();
-            return new PlayWindow();
-        } else {
-            return this;
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_ESCAPE:
+                resetVariables();
+                return new StartWindow();
+            case KeyEvent.VK_ENTER:
+                resetVariables();
+                return new PlayWindow();
+            case KeyEvent.VK_L:
+                resetVariables();
+                return new LeaderboardWindow();
+            default:
+                return this;
         }
     }
 }

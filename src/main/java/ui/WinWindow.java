@@ -8,10 +8,10 @@ import static main.java.Main.endGame;
 
 public class WinWindow implements Window {
 
-
+    private static boolean addedToDb = false;
 
     public void displayOutput(AsciiPanel terminal) {
-
+        terminal.write("The gnomes found the way out! You have won!", 1, 1);
         terminal.writeCenter(" _______  _______ ", 1);
         terminal.writeCenter("|       ||       |", 2);
         terminal.writeCenter("|    ___||    ___|", 3);
@@ -19,14 +19,30 @@ public class WinWindow implements Window {
         terminal.writeCenter("|   ||  ||   ||  |", 5);
         terminal.writeCenter("|   |_| ||   |_| |", 6);
         terminal.writeCenter("|_______||_______|", 7);
+        terminal.writeCenter("[ENTER] - play again | [ESC] - go to main menu | [L] - go to leaderboard", 22);
+        if (!addedToDb) {
+            addedToDb = true;
+            endGame();
+        }
+    }
 
-
-        terminal.write("The gnomes found the way out, you've won!", 1, 9);
-        terminal.writeCenter("Press [ENTER] to play again", 22);
-        endGame();
+    private static void resetVariables() {
+        addedToDb = false;
     }
 
     public Window respondToUserInput(KeyEvent key) {
-        return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayWindow() : this;
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_ESCAPE:
+                resetVariables();
+                return new StartWindow();
+            case KeyEvent.VK_ENTER:
+                resetVariables();
+                return new PlayWindow();
+            case KeyEvent.VK_L:
+                resetVariables();
+                return new LeaderboardWindow();
+            default:
+                return this;
+        }
     }
 }

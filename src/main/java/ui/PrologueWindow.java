@@ -24,6 +24,9 @@ public class PrologueWindow implements Window {
             if((((keyCode>=65)&&(keyCode<=90))||((keyCode>=97)&&(keyCode<=122))||((keyCode>=48)&&(keyCode<=57)))) {
                 sb.append(key.getKeyChar());
             }
+            if((keyCode == 46 || keyCode == 8) && (sb.length() > 0)) {
+                sb.setLength(sb.length() - 1);
+            }
             return this;
         }
     }

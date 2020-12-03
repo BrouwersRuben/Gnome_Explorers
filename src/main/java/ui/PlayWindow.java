@@ -90,20 +90,32 @@ public class PlayWindow implements Window {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
                 increaseScore();
+                if (player.getY() <= 0) {
+                   return this;
+                }
                 player.move(0, -1);
                 return this;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
+                if (player.getY() >= 23) {
+                    return this;
+                }
                 increaseScore();
                 player.move(0, 1);
                 return this;
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
+                if (player.getX() <= 0) {
+                    return this;
+                }
                 increaseScore();
                 player.move(-1, 0);
                 return this;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
+                if (player.getX() >= 79) {
+                    return this;
+                }
                 increaseScore();
                 player.move(1, 0);
                 return this;
