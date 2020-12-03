@@ -1,30 +1,27 @@
 package main.java;
 
+import main.java.entities.Animal;
+import main.java.ui.Interface;
+
+import java.awt.*;
 import java.io.File;
-import java.sql.*;
-import java.util.Calendar;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import static main.java.ui.PlayWindow.gameScore;
+import static main.java.ui.PrologueWindow.playerName;
 
 public class Main {
-    // User input
-    private static final Scanner keyboard = new Scanner(System.in);
 
-    // Game over boolean to be switched when game ended
-    private static boolean gameOver;
+    public static Animal player;
+    public static int startingX = 5;
+    public static int startingY = 5;
+    public static Interface ui;
 
-    // Player related variables
-    // TODO: Update from hardcoded
-    private static String playerName;
-    private static java.sql.Timestamp playerTime = null;
-    private static int playerScore = 0;
-
-    // Starting position
-    private static int x = 0;
-    private static int y = 0;
-
-    // Database specific variables
-    private static Connection conn = null;
-    private static Statement statement = null;
+    public static Connection conn = null;
+    public static Statement statement = null;
 
     // Enable the connection to the database with the tnsnames.ora
     public static void setTnsAdmin() {
@@ -54,184 +51,40 @@ public class Main {
                 // Creating the table for the leaderboard
                 // statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25), end_time timestamp not null, score number not null)");
 
-                showMainMenu();
-                if(!gameOver) {
-                    playGame();
-                }
-                endGame();
-
+                showGameWindow();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if(conn != null && !conn.isClosed()) {
-                    conn.close();
-                }
-                if(statement != null && !statement.isClosed()) {
-                    statement.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
-    private static void showMainMenu() {
-
-        int choice;
-
-        String companyName = "Wild Llama Entertainment";
-
-        System.out.printf("%s proudly presents.. \n", companyName);
-        System.out.println("  ____  ____    ___   ___ ___    ___        ___  __ __  ____  _       ___   ____     ___  ____    _____\n" +
-                " /    T|    \\  /   \\ |   T   T  /  _]      /  _]|  T  T|    \\| T     /   \\ |    \\   /  _]|    \\  / ___/\n" +
-                "Y   __j|  _  YY     Y| _   _ | /  [_      /  [_ |  |  ||  o  ) |    Y     Y|  D  ) /  [_ |  D  )(   \\_ \n" +
-                "|  T  ||  |  ||  O  ||  \\_/  |Y    _]    Y    _]l_   _j|   _/| l___ |  O  ||    / Y    _]|    /  \\__  T\n" +
-                "|  l_ ||  |  ||     ||   |   ||   [_     |   [_ |     ||  |  |     T|     ||    \\ |   [_ |    \\  /  \\ |\n" +
-                "|     ||  |  |l     !|   |   ||     T    |     T|  |  ||  |  |     |l     !|  .  Y|     T|  .  Y \\    |\n" +
-                "l___,_jl__j__j \\___/ l___j___jl_____j    l_____j|__j__|l__j  l_____j \\___/ l__j\\_jl_____jl__j\\_j  \\___j");
-
-        System.out.println("\n\tNew Game\n Press 1 to continue\n Press 2 to show leaderboard\n Press 3 to exit");
-
-        choice = keyboard.nextInt();
-
-        if (choice == 3) {
-            System.out.println("Untraveled paths dismay the frail. Return with more valiance.");
-            System.exit(0);
-            return;
-        } else if (choice == 2) {
-            showLeaderboard();
-            return;
-        } else if (choice == 1) {
-            System.out.println("\tEnter your name");
-        } else {
-            System.out.println("\tTry another input next time");
-            return;
-        }
-
-        playerName = keyboard.next();
-
-        System.out.println("Prepare, " + playerName + ", for adventure awaits you...");
-
-        // "Enter your name' isn't aligned with "new game" and I can't figure out how to use souf or anything else to fix this :/
-    }
-
-
-    private static void playGame() {
-        //String cutPlayerName = playerName.substring(0,15);
-        //I wanted to show the players name in the top left of the game window, next to the timer.
-        String timer = "00:00"; //This timer will work, and start when the game starts
-        // TODO: Update this to work with playerTimer variable
-
-        String startGameWindow = "#-------------------#\n" +
-                "| k                 |\n" +
-                "|                   |\n" +
-                "|                   #\n" +
-                "|         P\n" +
-                "|                   #\n" +
-                "|                   |\n" +
-                "|                   |\n" +
-                "#-------------------#";
-        //Player position = x11, y5
-        System.out.printf("%21s \n", timer);
-        System.out.printf("%s\n",startGameWindow);
-        /*
-        //If the player reaches the door (X21, Y5), then the new window will appear. (and so on, until all windows are explored)
-        String gameWindow2 = "#-------------------#\n" +
-                "|                   |\n" +
-                "|                   |\n" +
-                "#                   #\n" +
-                "\n" +
-                "#                   #\n" +
-                "|                   |\n" +
-                "|                   |\n" +
-                "#-------#  #--------#";
-         */
-
-        System.out.println("Use WASD to move!");
-
-        // Repeat movement until game over
-        while(!gameOver) {
-            movePlayer();
-
-            // Sample game over condition
-            if(x == 5 || y == 5 || x == -5 || y == -5) {
-                gameOver = true;
-            }
-        }
-    }
-
-    private static void movePlayer() {
-
-        // User input. TODO: Replace with KeyListener
-        char key = keyboard.next().charAt(0);
-
-        // Change player position based on key pressed
-        if(key == 'W' || key == 'w') y++;
-
-        if(key == 'S' || key == 's') y--;
-
-        if(key == 'A' || key == 'a') x--;
-
-        if(key == 'D' || key == 'd') x++;
-
-        // Increment player score as placeholder
-        playerScore += 10;
-
-        System.out.printf("Player position: | x: %2d | y: %2d | %n", x, y);
-
-    }
-
-    private static void endGame() {
-        System.out.println(" ");
-        String EndGame = "  ______           _    _____                      \n" +
-                " |  ____|         | |  / ____|                     \n" +
-                " | |__   _ __   __| | | |  __  __ _ _ __ ___   ___ \n" +
-                " |  __| | '_ \\ / _` | | | |_ |/ _` | '_ ` _ \\ / _ \\\n" +
-                " | |____| | | | (_| | | |__| | (_| | | | | | |  __/\n" +
-                " |______|_| |_|\\__,_|  \\_____|\\__,_|_| |_| |_|\\___|\n" +
-                "                                                   \n" +
-                "                                                   ";
-        System.out.print(EndGame + "\n");
-        System.out.printf("%s's final score: %d points\n", playerName, playerScore);
-
-        // 1) create a java calendar instance
-        Calendar calendar = Calendar.getInstance();
-
-        // 2) get a java.util.Date from the calendar instance.
-        //    this date will represent the current instant, or "now".
-        java.util.Date now = calendar.getTime();
-
-        // 3) a java current time (now) instance
-        playerTime = new java.sql.Timestamp(now.getTime());
-
-        System.out.printf("Time: %s", playerTime);
-
+    public static void closeDb() {
         try {
-            String insertPlayerData = "INSERT INTO INT_leaderboard (player_name, end_time, score) VALUES ('" + playerName + "', CURRENT_TIMESTAMP, " + playerScore + ")";
+            if(conn != null && !conn.isClosed()) {
+                conn.close();
+                System.out.println("Closed database connection.");
+            }
+            if(statement != null && !statement.isClosed()) {
+                statement.close();
+                System.out.println("Closed database statements.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static void showGameWindow() {
+        player = new Animal("player", 'G', Color.white, startingX, startingY);
+        ui = new Interface(144, 48);
+    }
+
+    public static void endGame() {
+        try {
+            String insertPlayerData = "INSERT INTO INT_leaderboard (player_name, end_time, score) VALUES ('" + playerName + "', CURRENT_TIMESTAMP, " + gameScore + ")";
             statement.execute(insertPlayerData);
+            System.out.println("Successfully inserted the player named " + playerName + " to the database.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
-
-    private static void showLeaderboard() {
-        try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM (SELECT player_name, end_time, score FROM INT_leaderboard ORDER BY score DESC) WHERE ROWNUM <= 5");
-
-            System.out.printf("%-10s %-10s %-10s%n", "Name", "Time", "Score");
-            while (resultSet.next()) {
-                String name = resultSet.getString(1);
-                Timestamp time = resultSet.getTimestamp(2);
-                int score = resultSet.getInt(3);
-
-                System.out.printf("%-10s %tT %5d%n", name, time, score);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
     }
 }
-
