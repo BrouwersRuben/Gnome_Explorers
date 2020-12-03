@@ -12,7 +12,7 @@ public class WinWindow implements Window {
 
     public void displayOutput(AsciiPanel terminal) {
         terminal.write("The gnomes found the way out! You have won!", 1, 1);
-        terminal.writeCenter("Press [ENTER] to play again or [ESC] to go to main menu", 22);
+        terminal.writeCenter("[ENTER] - play again | [ESC] - go to main menu | [L] - go to leaderboard", 22);
         if (!addedToDb) {
             addedToDb = true;
             endGame();
@@ -31,6 +31,9 @@ public class WinWindow implements Window {
             case KeyEvent.VK_ENTER:
                 resetVariables();
                 return new PlayWindow();
+            case KeyEvent.VK_L:
+                resetVariables();
+                return new LeaderboardWindow();
             default:
                 return this;
         }

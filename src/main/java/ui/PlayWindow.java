@@ -87,7 +87,6 @@ public class PlayWindow implements Window {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
                 if (player.getX() <= 0) {
-                    System.out.println(player.getX());
                     return this;
                 }
                 increaseScore();
