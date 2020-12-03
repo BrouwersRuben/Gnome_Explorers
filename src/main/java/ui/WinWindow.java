@@ -12,13 +12,13 @@ public class WinWindow implements Window {
 
     public void displayOutput(AsciiPanel terminal) {
         terminal.write("The gnomes found the way out! You have won!", 1, 1);
-        terminal.writeCenter(" _______  _______ ", 1);
-        terminal.writeCenter("|       ||       |", 2);
-        terminal.writeCenter("|    ___||    ___|", 3);
-        terminal.writeCenter("|   | __ |   | __ ", 4);
-        terminal.writeCenter("|   ||  ||   ||  |", 5);
-        terminal.writeCenter("|   |_| ||   |_| |", 6);
-        terminal.writeCenter("|_______||_______|", 7);
+        terminal.writeCenter(" _______  _______ ", 7);
+        terminal.writeCenter("|       ||       |", 8);
+        terminal.writeCenter("|    ___||    ___|", 9);
+        terminal.writeCenter("|   | __ |   | __ ", 10);
+        terminal.writeCenter("|   ||  ||   ||  |", 11);
+        terminal.writeCenter("|   |_| ||   |_| |", 12);
+        terminal.writeCenter("|_______||_______|", 13);
         terminal.writeCenter("[ENTER] - play again | [ESC] - go to main menu | [L] - go to leaderboard", 22);
         if (!addedToDb) {
             addedToDb = true;
