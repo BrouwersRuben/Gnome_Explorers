@@ -27,15 +27,9 @@ public class PlayWindow implements Window {
                 startGameTimer();
             }
             terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points", 1, 1);
+            terminal.write("-------------------------------------------------------------------------------",0,2);
         }
-        terminal.write("####################", 1, 2);
-        terminal.write("#                  #", 1,3);
-        terminal.write("#                  #", 1,4);
-        terminal.write("#                   ", 1,5);
-        terminal.write("#                   ", 1,6);
-        terminal.write("#                  #", 1,7);
-        terminal.write("#                  #", 1,8);
-        terminal.write("####################", 1, 9);
+        world.generateWorld(terminal);
         terminal.write(player.getSymbol(), player.getX(), player.getY(), player.getColor());
     }
 
