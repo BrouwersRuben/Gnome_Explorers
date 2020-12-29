@@ -26,7 +26,7 @@ public class World {
 
                 lineIndex++;
 
-                System.out.println("line: " + line + "\n");
+                // System.out.println("line: " + line + "\n");
 
                 s = line;
 
@@ -42,7 +42,7 @@ public class World {
                     position[0] = wallX;
                     position[1] = wallY;
 
-                    System.out.print("char: " + ch + " position: " + Arrays.toString(position) + "\n");
+                    // System.out.print("char: " + ch + " position: " + Arrays.toString(position) + "\n");
                     if (ch == '1') {
                         walls.add(position);
                         terminal.write('#', wallX, wallY);
