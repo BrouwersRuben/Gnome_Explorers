@@ -60,13 +60,13 @@ public class Main {
 
     public static void closeDb() {
         try {
-            if(conn != null && !conn.isClosed()) {
-                conn.close();
-                System.out.println("Closed database connection.");
-            }
             if(statement != null && !statement.isClosed()) {
                 statement.close();
                 System.out.println("Closed database statements.");
+            }
+            if(conn != null && !conn.isClosed()) {
+                conn.close();
+                System.out.println("Closed database connection.");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
