@@ -20,7 +20,7 @@ public class Main {
     public static int startingX = 5;
     public static int startingY = 5;
     public static Interface ui;
-    public static World world;
+    public static World world = new World();
 
     public static Connection conn = null;
     public static Statement statement = null;
@@ -78,7 +78,6 @@ public class Main {
     private static void showGameWindow() {
         player = new Animal("player", 'G', Color.white, startingX, startingY);
         ui = new Interface(144, 48);
-        world = new World();
     }
 
     public static void endGame() {
