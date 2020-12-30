@@ -13,7 +13,10 @@ public class World {
     public ArrayList<Integer[]> walls = new ArrayList<Integer[]>();
     int offSet = 3;
 
-    public void generateWorld(AsciiPanel terminal) {
+    public void generateWorld() {
+
+//        System.out.println("Generating new world..");
+
         try (BufferedReader br = new BufferedReader(new FileReader("resources/floors/floor1.txt"))) {
             String s;
             String line = br.readLine();
@@ -42,7 +45,6 @@ public class World {
                     // System.out.print("char: " + ch + " position: " + Arrays.toString(position) + "\n");
                     if (ch == '1') {
                         walls.add(position);
-                        terminal.write('#', wallX, wallY);
                     }
                     charIndex++;
                 }
@@ -52,6 +54,15 @@ public class World {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void paintWorld(AsciiPanel terminal) {
+
+//        System.out.println("Painting world..");
+
+        for (int i = 0 ; i < walls.size(); i++) {
+            terminal.write('#', walls.get(i)[0], walls.get(i)[1]);
         }
     }
 }

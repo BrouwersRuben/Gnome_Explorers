@@ -18,6 +18,7 @@ public class PlayWindow implements Window {
         if (tutorial) {
             terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around!", 1);
             terminal.writeCenter("You lose when timer reaches 0. You win with score > 300", 22);
+            world.generateWorld();
             tutorial = false;
         } else {
             if (!timerStarted) {
@@ -29,7 +30,7 @@ public class PlayWindow implements Window {
             terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points", 1, 1);
             terminal.write("-------------------------------------------------------------------------------",0,2);
         }
-        world.generateWorld(terminal);
+        world.paintWorld(terminal);
         terminal.write(player.getSymbol(), player.getX(), player.getY(), player.getColor());
     }
 
