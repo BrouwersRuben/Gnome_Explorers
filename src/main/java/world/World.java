@@ -78,11 +78,11 @@ public class World {
         }
 
         for (int i = 0 ; i < treasures.size(); i++) {
-            terminal.write('T', treasures.get(i)[0], treasures.get(i)[1]);
+            terminal.write('$', treasures.get(i)[0], treasures.get(i)[1]);
         }
 
         for (int i = 0 ; i < stairs.size(); i++) {
-            terminal.write('S', stairs.get(i)[0], stairs.get(i)[1]);
+            terminal.write('&', stairs.get(i)[0], stairs.get(i)[1]);
         }
     }
 }
