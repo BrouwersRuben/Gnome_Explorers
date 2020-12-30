@@ -20,13 +20,13 @@ public class Animal extends Entity {
 
         // System.out.println(deepContains(world.walls, position));
 
-        if(!deepContains(world.walls, position)) {
+        if(!deepContains(world.walls, position, false)) {
 
-            if (deepContains(world.treasures, position)) {
+            if (deepContains(world.treasures, position, true)) {
                 gameScore += 50;
             }
 
-            if (deepContains(world.stairs, position)) {
+            if (deepContains(world.stairs, position, false)) {
                 world.generateWorld(++world.level);
             }
 
@@ -35,11 +35,16 @@ public class Animal extends Entity {
         }
     }
 
-    public static boolean deepContains(List<Integer[]> list, Integer[] probe) {
+    public static boolean deepContains(List<Integer[]> list, Integer[] probe, boolean removeElement) {
+        int index = 0;
         for (Integer[] element : list) {
             if (Arrays.deepEquals(element, probe)) {
+                if (removeElement) {
+                    list.remove(index);
+                }
                 return true;
             }
+            index++;
         }
         return false;
     }
