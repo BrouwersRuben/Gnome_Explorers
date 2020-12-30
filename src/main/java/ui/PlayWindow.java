@@ -18,7 +18,7 @@ public class PlayWindow implements Window {
         if (tutorial) {
             terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around!", 1);
             terminal.writeCenter("You lose when timer reaches 0. You win with score > 300", 22);
-            world.generateWorld();
+            world.generateWorld(1);
             tutorial = false;
         } else {
             if (!timerStarted) {

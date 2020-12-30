@@ -13,11 +13,11 @@ public class World {
     public ArrayList<Integer[]> walls = new ArrayList<Integer[]>();
     int offSet = 3;
 
-    public void generateWorld() {
+    public void generateWorld(int level) {
 
 //        System.out.println("Generating new world..");
 
-        try (BufferedReader br = new BufferedReader(new FileReader("resources/floors/floor1.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("resources/floors/floor" + level + ".txt"))) {
             String s;
             String line = br.readLine();
 
