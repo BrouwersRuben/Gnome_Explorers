@@ -10,15 +10,20 @@ import java.util.Arrays;
 
 public class World {
 
-    public ArrayList<Integer[]> walls = new ArrayList<Integer[]>();
-    public ArrayList<Integer[]> stairs = new ArrayList<Integer[]>();
-    public ArrayList<Integer[]> treasures = new ArrayList<Integer[]>();
+    public ArrayList<Integer[]> walls;
+    public ArrayList<Integer[]> stairs;
+    public ArrayList<Integer[]> treasures;
 
+    public int level = 1;
     int offSet = 3;
 
     public void generateWorld(int level) {
 
-//        System.out.println("Generating new world..");
+        System.out.println("Generating new world..");
+
+        walls = new ArrayList<Integer[]>();
+        stairs = new ArrayList<Integer[]>();
+        treasures = new ArrayList<Integer[]>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("resources/floors/floor" + level + ".txt"))) {
             String s;

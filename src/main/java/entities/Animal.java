@@ -20,6 +20,11 @@ public class Animal extends Entity {
         // System.out.println(deepContains(world.walls, position));
 
         if(!deepContains(world.walls, position)) {
+
+            if (deepContains(world.stairs, position)) {
+                world.generateWorld(++world.level);
+            }
+
             x += dx;
             y += dy;
         }
