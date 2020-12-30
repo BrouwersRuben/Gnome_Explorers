@@ -18,24 +18,19 @@ public class PlayWindow implements Window {
         if (tutorial) {
             terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around!", 1);
             terminal.writeCenter("You lose when timer reaches 0. You win with score > 300", 22);
+            world.generateWorld(world.level);
             tutorial = false;
         } else {
             if (!timerStarted) {
-                gameTimer = 10;
+                gameTimer = 100;
                 gameScore = 0;
                 timerStarted = true;
                 startGameTimer();
             }
-            terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points", 1, 1);
+            terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points | LEVEL: " + world.level, 1, 1);
+            terminal.write("-------------------------------------------------------------------------------",0,2);
         }
-        terminal.write("####################", 1, 2);
-        terminal.write("#                  #", 1,3);
-        terminal.write("#                  #", 1,4);
-        terminal.write("#                   ", 1,5);
-        terminal.write("#                   ", 1,6);
-        terminal.write("#                  #", 1,7);
-        terminal.write("#                  #", 1,8);
-        terminal.write("####################", 1, 9);
+        world.paintWorld(terminal);
         terminal.write(player.getSymbol(), player.getX(), player.getY(), player.getColor());
     }
 
@@ -70,15 +65,10 @@ public class PlayWindow implements Window {
         player.setY(startingY);
     }
 
-    private void increaseScore() {
-        gameScore += 5;
-    }
-
     public Window respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                increaseScore();
                 if (player.getY() <= 0) {
                    return this;
                 }
@@ -89,7 +79,6 @@ public class PlayWindow implements Window {
                 if (player.getY() >= 23) {
                     return this;
                 }
-                increaseScore();
                 player.move(0, 1);
                 return this;
             case KeyEvent.VK_LEFT:
@@ -97,7 +86,6 @@ public class PlayWindow implements Window {
                 if (player.getX() <= 0) {
                     return this;
                 }
-                increaseScore();
                 player.move(-1, 0);
                 return this;
             case KeyEvent.VK_RIGHT:
@@ -105,7 +93,6 @@ public class PlayWindow implements Window {
                 if (player.getX() >= 79) {
                     return this;
                 }
-                increaseScore();
                 player.move(1, 0);
                 return this;
             default:

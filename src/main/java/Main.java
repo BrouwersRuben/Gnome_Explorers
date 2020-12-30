@@ -2,6 +2,7 @@ package main.java;
 
 import main.java.entities.Animal;
 import main.java.ui.Interface;
+import main.java.world.World;
 
 import java.awt.*;
 import java.io.File;
@@ -19,6 +20,7 @@ public class Main {
     public static int startingX = 5;
     public static int startingY = 5;
     public static Interface ui;
+    public static World world = new World();
 
     public static Connection conn = null;
     public static Statement statement = null;
