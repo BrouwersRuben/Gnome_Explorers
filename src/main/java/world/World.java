@@ -10,12 +10,10 @@ import java.util.Arrays;
 
 public class World {
 
-    public ArrayList<int[]> walls = new ArrayList<int[]>();
+    public ArrayList<Integer[]> walls = new ArrayList<Integer[]>();
     int offSet = 3;
 
     public void generateWorld(AsciiPanel terminal) {
-        int position[] = new int[2];
-
         try (BufferedReader br = new BufferedReader(new FileReader("resources/floors/floor1.txt"))) {
             String s;
             String line = br.readLine();
@@ -39,8 +37,7 @@ public class World {
                     int wallX = charIndex + offSet;
                     int wallY = lineIndex + offSet;
 
-                    position[0] = wallX;
-                    position[1] = wallY;
+                    Integer[] position = new Integer[] {wallX, wallY};
 
                     // System.out.print("char: " + ch + " position: " + Arrays.toString(position) + "\n");
                     if (ch == '1') {
