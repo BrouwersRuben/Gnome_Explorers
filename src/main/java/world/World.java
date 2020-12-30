@@ -11,6 +11,9 @@ import java.util.Arrays;
 public class World {
 
     public ArrayList<Integer[]> walls = new ArrayList<Integer[]>();
+    public ArrayList<Integer[]> stairs = new ArrayList<Integer[]>();
+    public ArrayList<Integer[]> treasures = new ArrayList<Integer[]>();
+
     int offSet = 3;
 
     public void generateWorld(int level) {
@@ -46,6 +49,15 @@ public class World {
                     if (ch == '1') {
                         walls.add(position);
                     }
+
+                    if (ch == '2') {
+                        treasures.add(position);
+                    }
+
+                    if (ch == '3') {
+                        stairs.add(position);
+                    }
+
                     charIndex++;
                 }
 
@@ -63,6 +75,14 @@ public class World {
 
         for (int i = 0 ; i < walls.size(); i++) {
             terminal.write('#', walls.get(i)[0], walls.get(i)[1]);
+        }
+
+        for (int i = 0 ; i < treasures.size(); i++) {
+            terminal.write('T', treasures.get(i)[0], treasures.get(i)[1]);
+        }
+
+        for (int i = 0 ; i < stairs.size(); i++) {
+            terminal.write('S', stairs.get(i)[0], stairs.get(i)[1]);
         }
     }
 }
