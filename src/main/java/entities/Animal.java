@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static main.java.Main.world;
+import static main.java.ui.PlayWindow.gameScore;
 
 public class Animal extends Entity {
 
@@ -20,6 +21,10 @@ public class Animal extends Entity {
         // System.out.println(deepContains(world.walls, position));
 
         if(!deepContains(world.walls, position)) {
+
+            if (deepContains(world.treasures, position)) {
+                gameScore += 50;
+            }
 
             if (deepContains(world.stairs, position)) {
                 world.generateWorld(++world.level);

@@ -65,15 +65,10 @@ public class PlayWindow implements Window {
         player.setY(startingY);
     }
 
-    private void increaseScore() {
-        gameScore += 5;
-    }
-
     public Window respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                increaseScore();
                 if (player.getY() <= 0) {
                    return this;
                 }
@@ -84,7 +79,6 @@ public class PlayWindow implements Window {
                 if (player.getY() >= 23) {
                     return this;
                 }
-                increaseScore();
                 player.move(0, 1);
                 return this;
             case KeyEvent.VK_LEFT:
@@ -92,7 +86,6 @@ public class PlayWindow implements Window {
                 if (player.getX() <= 0) {
                     return this;
                 }
-                increaseScore();
                 player.move(-1, 0);
                 return this;
             case KeyEvent.VK_RIGHT:
@@ -100,7 +93,6 @@ public class PlayWindow implements Window {
                 if (player.getX() >= 79) {
                     return this;
                 }
-                increaseScore();
                 player.move(1, 0);
                 return this;
             default:
