@@ -20,9 +20,9 @@ public class StartWindow implements Window {
         terminal.writeCenter("                        *- Wild Llama Entertainment -*                        ", 10);
 
         terminal.writeCenter("1 - Start Game   ", 12);
-        terminal.writeCenter("2 - Load Game    ", 14);
-        terminal.writeCenter("3 - Leaderboards ", 15);
-        terminal.writeCenter("4 - Exit         ", 16);
+        terminal.writeCenter("2 - Load Game    ", 13);
+        terminal.writeCenter("3 - Leaderboards ", 14);
+        terminal.writeCenter("4 - Exit         ", 15);
         terminal.write("Game Version 0.2b",62, 22);
     }
 
