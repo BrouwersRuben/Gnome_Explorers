@@ -19,10 +19,11 @@ public class StartWindow implements Window {
         terminal.writeCenter("                                             |_|                              ", 8);
         terminal.writeCenter("                        *- Wild Llama Entertainment -*                        ", 10);
 
-        terminal.writeCenter("1 - Start game", 12);
-        terminal.writeCenter("2 - Leaderboards", 13);
-        terminal.writeCenter("3 - Exit", 14);
-        terminal.write("beta-version 0.1",62, 22);
+        terminal.writeCenter("1 - Start Game   ", 12);
+        terminal.writeCenter("2 - Load Game    ", 14);
+        terminal.writeCenter("3 - Leaderboards ", 15);
+        terminal.writeCenter("4 - Exit         ", 16);
+        terminal.write("Game Version 0.2b",62, 22);
     }
 
     public Window respondToUserInput(KeyEvent key) {
@@ -30,8 +31,10 @@ public class StartWindow implements Window {
             case KeyEvent.VK_1:
                 return new PrologueWindow();
             case KeyEvent.VK_2:
-                return new LeaderboardWindow();
+                return new LoadPrologueWindow();
             case KeyEvent.VK_3:
+                return new LeaderboardWindow();
+            case KeyEvent.VK_4:
                 closeDb();
                 System.exit(0);
             default:
