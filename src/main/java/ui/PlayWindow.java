@@ -3,8 +3,11 @@ package main.java.ui;
 import asciiPanel.AsciiPanel;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.stream.Collectors;
 
 import static main.java.Main.*;
+import static main.java.ui.PrologueWindow.playerName;
 
 public class PlayWindow implements Window {
 
@@ -16,7 +19,7 @@ public class PlayWindow implements Window {
 
     public void displayOutput(AsciiPanel terminal) {
         if (tutorial) {
-            terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around!", 1);
+            terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around! Press [ESC] to save the game.", 1);
             terminal.writeCenter("You lose when timer reaches 0. You win with score > 300", 22);
             world.generateWorld(world.level);
             tutorial = false;
@@ -65,6 +68,35 @@ public class PlayWindow implements Window {
         player.setY(startingY);
     }
 
+    private void saveGame() {
+        StringBuilder gameTreasures = new StringBuilder();
+            for (Integer[] elem : world.treasures) {
+                gameTreasures.append(elem[0] + "," + elem[1] + "|");
+            }
+        System.out.println("============== SAVE GAME DATA ==============");
+        System.out.println("Name: " + playerName);
+        System.out.println("Time: " + gameTimer);
+        System.out.println("Score: " + gameScore);
+        System.out.println("Level: " + world.level);
+        System.out.println("Treasures: " + gameTreasures);
+        System.out.println("PosX: " + player.getX());
+        System.out.println("PosY: " + player.getY());
+        System.out.println("============================================");
+        String insertSaveData = "INSERT INTO INT_SAVEGAMES (" +
+                "PLAYER_NAME, " +
+                "GAME_TIMER, " +
+                "GAME_SCORE, " +
+                "GAME_LEVEL, " +
+                "GAME_TREASURES, " +
+                "PLAYER_POS_X, " +
+                "PLAYER_POS_Y) VALUES ('" + playerName + "' , '" + gameTimer + "' , '" + gameScore + "' , '" + world.level + "' , '" + gameTreasures + "' , '" + player.getX() + "' , '" + player.getY() + "')";
+        try {
+            statement.execute(insertSaveData);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public Window respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_UP:
@@ -94,6 +126,9 @@ public class PlayWindow implements Window {
                     return this;
                 }
                 player.move(1, 0);
+                return this;
+            case KeyEvent.VK_ESCAPE:
+                saveGame();
                 return this;
             default:
                 return this;

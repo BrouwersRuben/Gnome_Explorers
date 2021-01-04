@@ -51,7 +51,18 @@ public class Main {
                 statement = conn.createStatement();
 
                 // Creating the table for the leaderboard
-                // statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25), end_time timestamp not null, score number not null)");
+//                 statement.execute("CREATE TABLE INT_leaderboard (player_name varchar2(25), end_time timestamp not null, score number not null)");
+
+                // Creating the table for save games
+//                statement.execute("CREATE TABLE INT_Savegames (" +
+//                        "PLAYER_NAME varchar2(255), " +
+//                        "GAME_TIMER number not null, " +
+//                        "GAME_SCORE number not null," +
+//                        "GAME_LEVEL number not null," +
+//                        "GAME_TREASURES varchar2(255)," +
+//                        "PLAYER_POS_X number not null," +
+//                        "PLAYER_POS_Y number not null" +
+//                        ")");
 
                 showGameWindow();
             }
