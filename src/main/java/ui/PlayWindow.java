@@ -4,20 +4,29 @@ import asciiPanel.AsciiPanel;
 
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static java.lang.Integer.parseInt;
 import static main.java.Main.*;
 import static main.java.ui.PrologueWindow.playerName;
 
 public class PlayWindow implements Window {
 
-    private static int gameTimer;
+    public static int gameTimer;
     public static int gameScore;
+    public static String gameTreasures;
 
+    public static boolean loadGame = false;
     private static boolean tutorial = true;
     private static boolean timerStarted = false;
 
     public void displayOutput(AsciiPanel terminal) {
+        if (loadGame) {
+            world.generateWorld(world.level);
+            loadGame();
+        }
         if (tutorial) {
             terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around! Press [ESC] to save the game.", 1);
             terminal.writeCenter("You lose when timer reaches 0. You win with score > 300", 22);
@@ -83,18 +92,59 @@ public class PlayWindow implements Window {
         System.out.println("PosY: " + player.getY());
         System.out.println("============================================");
         String insertSaveData = "INSERT INTO INT_SAVEGAMES (" +
+                "TIME_ADDED," +
                 "PLAYER_NAME, " +
                 "GAME_TIMER, " +
                 "GAME_SCORE, " +
                 "GAME_LEVEL, " +
                 "GAME_TREASURES, " +
                 "PLAYER_POS_X, " +
-                "PLAYER_POS_Y) VALUES ('" + playerName + "' , '" + gameTimer + "' , '" + gameScore + "' , '" + world.level + "' , '" + gameTreasures + "' , '" + player.getX() + "' , '" + player.getY() + "')";
+                "PLAYER_POS_Y) VALUES (CURRENT_TIMESTAMP, '" + playerName + "' , '" + gameTimer + "' , '" + gameScore + "' , '" + world.level + "' , '" + gameTreasures + "' , '" + player.getX() + "' , '" + player.getY() + "')";
         try {
             statement.execute(insertSaveData);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void loadGame() {
+        tutorial = false;
+        timerStarted = true;
+        startGameTimer();
+
+        char someChar = '|';
+        int count = 0;
+
+        for (int i = 0; i < gameTreasures.length(); i++) {
+            if (gameTreasures.charAt(i) == someChar) {
+                count++;
+            }
+        }
+
+        ArrayList<Integer[]> tempTreasures = new ArrayList<Integer[]>();
+
+        for (int i = 0; i <= count; i++) {
+            if(gameTreasures.length() > 0) {
+                String kept = gameTreasures.substring(0, gameTreasures.indexOf("|"));
+                String remainder = gameTreasures.substring(gameTreasures.indexOf("|") + 1, gameTreasures.length());
+
+                String X = kept.substring(0, kept.indexOf(","));
+                String Y = kept.substring(kept.indexOf(",") + 1);
+
+                int treasureX = parseInt(X);
+                int treasureY = parseInt(Y);
+
+                gameTreasures = remainder;
+
+                Integer[] treasurePosition = new Integer[]{treasureX, treasureY};
+
+                tempTreasures.add(treasurePosition);
+            }
+        }
+
+        world.treasures = tempTreasures;
+
+        loadGame = false;
     }
 
     public Window respondToUserInput(KeyEvent key) {

@@ -55,6 +55,7 @@ public class Main {
 
                 // Creating the table for save games
 //                statement.execute("CREATE TABLE INT_Savegames (" +
+//                        "TIME_ADDED timestamp not null," +
 //                        "PLAYER_NAME varchar2(255), " +
 //                        "GAME_TIMER number not null, " +
 //                        "GAME_SCORE number not null," +
