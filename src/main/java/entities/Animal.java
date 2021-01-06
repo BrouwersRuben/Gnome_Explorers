@@ -1,11 +1,14 @@
+//TODO: Shouldn't we change the name of this class? As we do not have any animals in the game itself
 package main.java.entities;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static main.java.Main.world;
 import static main.java.ui.PlayWindow.gameScore;
+import static main.java.ui.PlayWindow.gameTimer;
 
 public class Animal extends Entity {
 
@@ -14,6 +17,7 @@ public class Animal extends Entity {
     }
 
     public void move(int dx, int dy) {
+        Random rd = new Random();
         Integer[] position = new Integer[]{x + dx, y + dy};
 
         // System.out.println("[X, Y] : [" + x + " , " + y + "]");
@@ -29,6 +33,24 @@ public class Animal extends Entity {
             if (deepContains(world.stairs, position, false)) {
                 world.generateWorld(++world.level);
             }
+
+            if (deepContains(world.trap, position, true)) {
+                gameScore -= rd.nextInt(25)+1;
+            }
+
+            if (deepContains(world.stairsInv, position, false)) {
+                world.generateWorld(++world.level);
+            }
+
+            if (deepContains(world.stairsBack, position, false)) {
+                world.generateWorld(--world.level);
+            }
+
+            //TODO: Maybe delete this?
+            if (deepContains(world.exit, position, true)) {
+                gameTimer -= gameTimer-1;
+            }
+
 
             x += dx;
             y += dy;

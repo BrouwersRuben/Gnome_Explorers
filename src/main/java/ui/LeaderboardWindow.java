@@ -39,10 +39,10 @@ public class LeaderboardWindow implements Window {
         terminal.writeCenter("  (  )", 15);
         terminal.writeCenter("  _)(_", 16);
 
-        terminal.writeCenter("Press [ENTER] to return to main menu", 22);
+        terminal.writeCenter("Press [ESC] to return to main menu", 22);
     }
 
     public Window respondToUserInput(KeyEvent key) {
-        return key.getKeyCode() == KeyEvent.VK_ENTER ? new StartWindow() : this;
+        return key.getKeyCode() == KeyEvent.VK_ESCAPE ? new StartWindow() : this;
     }
 }

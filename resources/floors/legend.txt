@@ -1,0 +1,9 @@
+Legend for the maps:
+0 = Walkable space
+1 / # = Wall
+2 / $ = Treasure
+3 / & = Stairs
+4 / ! = trap
+5 = Invisible stairs
+6 = Stairs that go back
+7 / E = EndGame

@@ -17,33 +17,19 @@ import static main.java.ui.PrologueWindow.playerName;
 public class Main {
 
     public static Animal player;
-    public static int startingX = 5;
-    public static int startingY = 5;
+    public static int startingX = 17;
+    public static int startingY = 11;
     public static Interface ui;
     public static World world = new World();
 
     public static Connection conn = null;
     public static Statement statement = null;
 
-    // Enable the connection to the database with the tnsnames.ora
-    public static void setTnsAdmin() {
-        String tnsAdmin = System.getenv("TNS_ADMIN");
-        if (tnsAdmin == null) {
-            String oracleHome = System.getenv("ORACLE_HOME");
-            if (oracleHome == null) {
-                return; //failed to find any useful env variables
-            }
-            tnsAdmin = oracleHome + File.separatorChar + "network" + File.separatorChar + "admin";
-        }
-        System.setProperty("oracle.net.tns_admin", tnsAdmin);
-    }
-
     public static void main(String[] args) {
         try {
-            setTnsAdmin();
-            String db_url = "jdbc:oracle:thin:@wildllamaent_medium";
-            String username = System.getenv("DB_USERNAME");
-            String password = System.getenv("DB_PASSWORD");
+            String db_url = "jdbc:oracle:thin:@wildllamaent_medium?TNS_ADMIN=./db";
+            String username = "INTEGRATION PROJECT";
+            String password = "WildLlamaEntertainment1";
 
             conn = DriverManager.getConnection(db_url, username, password);
             if(conn != null) {

@@ -14,6 +14,11 @@ import static main.java.ui.PrologueWindow.playerName;
 
 public class PlayWindow implements Window {
 
+    public static final int sleep = 1000;
+    public static final int constantGameScore = 280;
+    public static final int constantGameTimer = 35;
+
+
     public static int gameTimer;
     public static int gameScore;
     public static String gameTreasures;
@@ -29,17 +34,25 @@ public class PlayWindow implements Window {
         }
         if (tutorial) {
             terminal.writeCenter("Use [ARROW KEYS] or [WASD] to move around! Press [ESC] to save the game.", 1);
-            terminal.writeCenter("You lose when timer reaches 0. You win with score > 300", 22);
+            terminal.writeCenter("You lose when timer reaches 0. You win with score > 280", 22);
+            terminal.write("Legend: ", 60, 3);
+            terminal.write("Wall = #", 60, 4);
+            terminal.write("Treasure = $",60,  5);
+            terminal.write("Stairs = &",60, 6);
+            terminal.write("Trap = !",60, 7);
+            terminal.write("End the game = E", 60, 8);
+
+
             world.generateWorld(world.level);
             tutorial = false;
         } else {
             if (!timerStarted) {
-                gameTimer = 100;
+                gameTimer = constantGameTimer;
                 gameScore = 0;
                 timerStarted = true;
                 startGameTimer();
             }
-            terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points | LEVEL: " + world.level, 1, 1);
+            terminal.write("TIME LEFT: " + gameTimer + " seconds | SCORE: " + gameScore + " points | FLOOR: " + world.level, 1, 1);
             terminal.write("-------------------------------------------------------------------------------",0,2);
         }
         world.paintWorld(terminal);
@@ -50,7 +63,7 @@ public class PlayWindow implements Window {
         Thread newThread = new Thread(() -> {
             while(gameTimer > 0) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(sleep);
                     gameTimer = gameTimer - 1;
                     ui.window = new PlayWindow();
                     ui.repaint();
@@ -61,7 +74,7 @@ public class PlayWindow implements Window {
 
             resetVariables();
 
-            if(gameScore > 300) {
+            if(gameScore > constantGameScore) {
                 ui.window = new WinWindow();
             } else {
                 ui.window = new LoseWindow();
@@ -71,6 +84,7 @@ public class PlayWindow implements Window {
     }
 
     private void resetVariables() {
+        world.level = 1;
         tutorial = true;
         timerStarted = false;
         player.setX(startingX);

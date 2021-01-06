@@ -12,7 +12,7 @@ public class LoadPrologueWindow implements Window {
 
     public void displayOutput(AsciiPanel terminal) {
         playerName = sb.toString();
-        terminal.writeCenter("Enter name to load the most recent save for and press [ENTER]..", 9);
+        terminal.writeCenter("Enter name to load the most recent save for, and press [ENTER]..", 9);
         terminal.writeCenter(playerName, 11);
     }
 
