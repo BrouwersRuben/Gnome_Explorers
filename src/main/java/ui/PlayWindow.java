@@ -96,6 +96,7 @@ public class PlayWindow implements Window {
             for (Integer[] elem : world.treasures) {
                 gameTreasures.append(elem[0] + "," + elem[1] + "|");
             }
+        System.out.println("You have saved your game with this data.");
         System.out.println("============== SAVE GAME DATA ==============");
         System.out.println("Name: " + playerName);
         System.out.println("Time: " + gameTimer);
