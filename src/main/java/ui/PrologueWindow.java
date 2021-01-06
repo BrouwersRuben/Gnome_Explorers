@@ -17,7 +17,7 @@ public class PrologueWindow implements Window {
 
     public Window respondToUserInput(KeyEvent key) {
         int keyCode =  key.getKeyCode();
-        if(keyCode == KeyEvent.VK_ENTER) {
+        if(keyCode == KeyEvent.VK_ENTER && playerName.length() > 0) {
             return new PlayWindow();
         } else {
             // Alphanumeric character codes
