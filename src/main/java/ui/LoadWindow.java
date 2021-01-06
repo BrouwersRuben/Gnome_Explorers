@@ -23,9 +23,9 @@ public class LoadWindow implements Window {
 
         data = new ArrayList<String[]>();
 
-        terminal.writeCenter("--------------------------------", 1);
-        terminal.writeCenter("|     Available Load Games     |", 2);
-        terminal.writeCenter("--------------------------------",3);
+        terminal.writeCenter("---------------------------------", 1);
+        terminal.writeCenter("|     Available Saved Games     |", 2);
+        terminal.writeCenter("---------------------------------",3);
         terminal.writeCenter("Press [ESC] to go back to main menu", 22);
 
         try {
