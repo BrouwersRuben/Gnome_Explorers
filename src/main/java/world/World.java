@@ -16,7 +16,7 @@ public class World {
     public ArrayList<Integer[]> trap;
     public ArrayList<Integer[]> stairsInv;
     public ArrayList<Integer[]> stairsBack;
-    public ArrayList<Integer[]> endGame;
+    public ArrayList<Integer[]> exit;
 
     public int level = 1;
     int offSet = 3;
@@ -31,7 +31,7 @@ public class World {
         trap = new ArrayList<Integer[]>();
         stairsInv = new ArrayList<Integer[]>();
         stairsBack = new ArrayList<Integer[]>();
-        endGame = new ArrayList<Integer[]>();
+        exit = new ArrayList<Integer[]>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("resources/floors/floor" + level + ".txt"))) {
             String s;
@@ -84,7 +84,7 @@ public class World {
                     }
 
                     if (ch == '7') {
-                        endGame.add(position);
+                        exit.add(position);
                     }
 
                     charIndex++;
@@ -127,8 +127,8 @@ public class World {
             terminal.write('&', stairsBack.get(i)[0], stairsBack.get(i)[1]);
         }
 
-        for (int i = 0 ; i < endGame.size(); i++) {
-            terminal.write('E', endGame.get(i)[0], endGame.get(i)[1], Color.green);
+        for (int i = 0; i < exit.size(); i++) {
+            terminal.write('E', exit.get(i)[0], exit.get(i)[1], Color.green);
         }
 
     }
