@@ -9,5 +9,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="ojdbc8" level="project" />
     <orderEntry type="library" name="asciiPanel" level="project" />
+    <orderEntry type="library" name="oraclepki" level="project" />
+    <orderEntry type="library" name="osdt_cert" level="project" />
+    <orderEntry type="library" name="osdt_core" level="project" />
   </component>
 </module>
