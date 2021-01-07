@@ -5,18 +5,6 @@
       <element id="module-output" name="ascii-game" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/ojdbc8.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/asciiPanel.jar" path-in-jar="/" />
-      <element id="directory" name="db">
-        <element id="file-copy" path="$PROJECT_DIR$/db/cwallet.sso" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/cwallet.sso.lck" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/ewallet.p12" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/ewallet.p12.lck" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/keystore.jks" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/ojdbc.properties" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/README" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/sqlnet.ora" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/tnsnames.ora" />
-        <element id="file-copy" path="$PROJECT_DIR$/db/truststore.jks" />
-      </element>
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/oraclepki.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_cert.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_core.jar" path-in-jar="/" />
