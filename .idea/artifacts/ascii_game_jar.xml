@@ -8,7 +8,6 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_cert.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/asciiPanel.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/oraclepki.jar" path-in-jar="/" />
-      <element id="dir-copy" path="$PROJECT_DIR$/db" />
     </root>
   </artifact>
 </component>
