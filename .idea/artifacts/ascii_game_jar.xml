@@ -3,11 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ascii_game_jar</output-path>
     <root id="archive" name="ascii-game.jar">
       <element id="module-output" name="ascii-game" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_core.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/ojdbc8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_cert.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/asciiPanel.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/oraclepki.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_cert.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/lib/osdt_core.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/db" />
     </root>
   </artifact>
 </component>
