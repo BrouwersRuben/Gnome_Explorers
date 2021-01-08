@@ -27,8 +27,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            String db = System.getenv("TNS_ADMIN");
-            String db_url = "jdbc:oracle:thin:@wildllamaent_medium?TNS_ADMIN=" + db;
+            String db_url = "jdbc:oracle:thin:@wildllamaent_medium?TNS_ADMIN=./db";
             String username = "INTEGRATION PROJECT";
             String password = "WildLlamaEntertainment1";
 
